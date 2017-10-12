@@ -31,7 +31,7 @@ class Dropbox extends Storage {
     private $config;
 
     protected function setUp() {
-        $this->config = json_decode(file_get_contents('./config.json'), true);
+        $this->config = json_decode(file_get_contents(__DIR__ .'/config.json'), true);
         $this->instance = new \OCA\Files_external_dropbox\Storage\Dropbox($this->config);
         parent::setUp();
     }
