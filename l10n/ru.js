@@ -2,6 +2,7 @@ OC.L10N.register(
     "files_external_dropbox",
     {
     "Error verifying OAuth2 Code for " : "Ошибка проверки кода OAuth2 для ",
+    "Dropbox V2" : "Dropbox вер.2",
     "Step 2 failed. Exception: %s" : "Шаг 2 неудачен. Исключение: %s",
     "Invalid Request Params!!" : "Неверные параметры запроса!!"
 },
