@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	$('#files_external').on('oauth_step1', '.files_external_dropbox .configuration', function (event, data) {
 		if (data['backend_id'] !== backendId) {
-			return false;	// means the trigger is not for this storage adapter
+			return;	// means the trigger is not for this storage adapter
 		}
 
 		OCA.External.Settings.OAuth2.getAuthUrl(backendUrl, data);
@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 	$('#files_external').on('oauth_step2', '.files_external_dropbox .configuration', function (event, data) {
 		if (data['backend_id'] !== backendId || data['code'] === undefined) {
-			return false;		// means the trigger is not for this OAuth2 grant
+			return;		// means the trigger is not for this OAuth2 grant
 		}
 		
 		OCA.External.Settings.OAuth2.verifyCode(backendUrl, data)
