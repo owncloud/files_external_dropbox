@@ -25,7 +25,7 @@ endif
 
 PHPUNIT="$(PWD)/lib/composer/phpunit/phpunit/phpunit"
 
-market_doc_files=LICENSE README.md
+market_doc_files=LICENSE README.md CHANGELOG.md
 market_src_dirs=appinfo l10n js lib vendor
 market_all_src=$(market_src_dirs) $(market_doc_files)
 build_dir=build
