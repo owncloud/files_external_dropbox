@@ -74,11 +74,6 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 		if ($location === '') {
 			$location = '/';
 		}
-		return $location;
-	}
-
-	public function buildPath($path) {
-		$location = parent::buildPath($path);
 		if ($this->isCaseInsensitiveStorage) {
 			$location = strtolower($location);
 		}
