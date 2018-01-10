@@ -26,6 +26,8 @@ namespace OCA\Files_external_dropbox\Storage;
 use Icewind\Streams\IteratorDirectory;
 use League\Flysystem\FileNotFoundException;
 use OCP\Files\Storage\FlysystemStorageAdapter;
+use League\Flysystem\AdapterInterface;
+use League\Flysystem\Plugin\GetWithMetadata;
 
 /**
  * Generic Cacheable adapter between flysystem adapters and owncloud's storage system
@@ -34,16 +36,26 @@ use OCP\Files\Storage\FlysystemStorageAdapter;
  */
 abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 	/**
-     * This property is used to check whether the storage is case insensitive or not
-     * @var boolean
-     */
-    protected $isCaseInsensitiveStorage = false;
+	 * This property is used to check whether the storage is case insensitive or not
+	 * @var boolean
+	 */
+	protected $isCaseInsensitiveStorage = false;
 
 	/**
 	 * Stores the results in cache for the current request to prevent multiple requests to the API
 	 * @var array
 	 */
 	protected $cacheContents = [];
+
+	/**
+	 * Initialize the storage backend with a flyssytem adapter
+	 *
+	 * @param \League\Flysystem\AdapterInterface $adapter
+	 */
+	protected function buildFlySystem(AdapterInterface $adapter) {
+	    $this->flysystem = new Filesystem($adapter, [Filesystem::IS_CASE_INSENSITIVE_STORAGE => $this->isCaseInsensitiveStorage]);
+	    $this->flysystem->addPlugin(new GetWithMetadata());
+	}
 
 	public function clearCache() {
 		$this->cacheContents = [];

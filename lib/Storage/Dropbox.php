@@ -53,6 +53,7 @@ class Dropbox extends CacheableFlysystemAdapter {
 
     /**
      * This property is used to check whether the storage is case insensitive or not
+     * Override parent value
      * @var boolean
      */
     protected $isCaseInsensitiveStorage = true;
