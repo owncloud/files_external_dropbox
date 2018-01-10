@@ -58,6 +58,12 @@ class ContentListingFormatter extends FlysystemContentListingFormatter {
         $this->isCaseInsensitiveStorage = $value;
     }
 
+    /**
+     * This method not part of third party library
+     * If the storage is case insensitive then path should be converted to lowercase
+     * @param  string $path Path to file/folder
+     * @return string       Modified Path
+     */
     public function formatPath($path) {
         if ($this->isCaseInsensitiveStorage) {
             $path = strtolower($path);
@@ -111,7 +117,7 @@ class ContentListingFormatter extends FlysystemContentListingFormatter {
 
     /**
      * Check if the entry resides within the parent directory.
-     *
+     * Update path comparison check using $this->formatPath
      * @param $entry
      *
      * @return bool
@@ -127,7 +133,7 @@ class ContentListingFormatter extends FlysystemContentListingFormatter {
 
     /**
      * Check if the entry is a direct child of the directory.
-     *
+     * Update path comparision check using $this->formatPath
      * @param $entry
      *
      * @return bool

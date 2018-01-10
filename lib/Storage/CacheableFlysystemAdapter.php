@@ -49,6 +49,7 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 
 	/**
 	 * Initialize the storage backend with a flyssytem adapter
+	 * Override parent method so the flysystem include information about storage case sensitivity
 	 *
 	 * @param \League\Flysystem\AdapterInterface $adapter
 	 */

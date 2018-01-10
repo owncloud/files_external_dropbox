@@ -39,6 +39,7 @@ class Filesystem extends VendorFilesystem {
         $contents = $this->getAdapter()->listContents($directory, $recursive);
 
         $contentListFormatter = new ContentListingFormatter($directory, $recursive);
+        // Make the formatter aware of the storage type i.e. whether it is case insensitive or not
         $contentListFormatter->setIsCaseInsensitiveStorage($this->getConfig()->get(static::IS_CASE_INSENSITIVE_STORAGE, false));
 
         return $contentListFormatter->formatListing($contents);
