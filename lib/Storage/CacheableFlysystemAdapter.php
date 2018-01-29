@@ -177,4 +177,12 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 		$info = $this->getFlysystemMetadata($path);
 		return $info['type'];
 	}
+
+	/**
+	* {@inheritdoc}
+	*/
+	public function file_exists($path) {
+		$info = $this->getFlysystemMetadata($path);
+		return (bool) $info;
+	}
 }
