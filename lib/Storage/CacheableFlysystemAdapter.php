@@ -54,8 +54,8 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 	 * @param \League\Flysystem\AdapterInterface $adapter
 	 */
 	protected function buildFlySystem(AdapterInterface $adapter) {
-	    $this->flysystem = new Filesystem($adapter, [Filesystem::IS_CASE_INSENSITIVE_STORAGE => $this->isCaseInsensitiveStorage]);
-	    $this->flysystem->addPlugin(new GetWithMetadata());
+		$this->flysystem = new Filesystem($adapter, [Filesystem::IS_CASE_INSENSITIVE_STORAGE => $this->isCaseInsensitiveStorage]);
+		$this->flysystem->addPlugin(new GetWithMetadata());
 	}
 
 	public function clearCache() {
@@ -93,7 +93,7 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 				$this->cacheContents[$location] = $this->flysystem->getMetadata($location);
 			} catch (FileNotFoundException $e) {
 				// do not store this info in cache as it might interfere with Upload process
-                return false;
+				return false;
 			}
 		}
 		return $this->cacheContents[$location];
