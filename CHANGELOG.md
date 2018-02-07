@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 
 ## [1.0.1] - 2018-02-08
+### Known Issues
+- File and folder names are converted to lowercase [#27](https://github.com/owncloud/files_external_dropbox/issues/27)
+
 ### Changed
 - Use caching mechanism for performance improvements [#29](https://github.com/owncloud/files_external_dropbox/pull/29)
 - Use v2 in label to avoid confusion with v1 [#11](https://github.com/owncloud/files_external_dropbox/pull/11)
@@ -18,5 +21,4 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 Initial release of the application
 
-[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.0...HEAD
 [1.0.1]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.0...v1.0.1
