@@ -144,7 +144,7 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 			return 0;
 		} else {
 			$info = $this->getFlysystemMetadata($path);
-			return $info['size'];
+			return (int) $info['size'];
 		}
 	}
 
@@ -153,7 +153,10 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 	 */
 	public function filemtime($path) {
 		$info = $this->getFlysystemMetadata($path);
-		return $info['timestamp'];
+		if ($info) {	// if $path exists
+			return $info['timestamp'];
+		}
+		return 0;
 	}
 
 	/**
@@ -161,10 +164,13 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 	 */
 	public function stat($path) {
 		$info = $this->getFlysystemMetadata($path);
-		return [
-			'mtime' => $info['timestamp'],
-			'size' => $info['size']
-		];
+		if ($info) {
+			return [
+				'mtime' => $info['timestamp'],
+				'size' => $info['size']
+			];
+		}
+		return false;
 	}
 
 	/**
@@ -175,6 +181,17 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 			return 'dir';
 		}
 		$info = $this->getFlysystemMetadata($path);
-		return $info['type'];
+		if ($info) {
+			return $info['type'];
+		}
+		return false;
+	}
+
+	/**
+	* {@inheritdoc}
+	*/
+	public function file_exists($path) {
+		$info = $this->getFlysystemMetadata($path);
+		return (bool) $info;
 	}
 }
