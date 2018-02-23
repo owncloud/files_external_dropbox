@@ -202,4 +202,39 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 		$info = $this->getFlysystemMetadata($path);
 		return (bool) $info;
 	}
+
+	/**
+	 * Set the cacheContents for the given path to false instead of null
+	 * to prevent request to external storage
+	 *
+	 * Should be used when we know that the querying this path in the
+	 * adapter will return false (i.e path not exists in external storage)
+	 * @param  string $path Path to file/folder
+	 */
+	protected function removeStatCache($path) {
+		$location = $this->getCacheLocation($path);
+		$this->cacheContents[$location] = false;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function rmdir($path) {
+		$success = parent::rmdir($path);
+		if ($success) {
+			$this->removeStatCache($path);
+		}
+		return $success;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function unlink($path) {
+		$success = parent::unlink($path);
+		if ($success) {
+			$this->removeStatCache($path);
+		}
+		return $success;
+	}
 }
