@@ -3,5 +3,5 @@
     "Dropbox V2" : "دراپ‌باکس نگارش۲",
     "Step 2 failed. Exception: %s" : "گام ۲ شکست خورد. خطا: %s",
     "Invalid Request Params!!" : "پارامترهای درخواست نامعتبر!!"
-},"pluralForm" :"nplurals=1; plural=0;"
+},"pluralForm" :"nplurals=2; plural=((n<=1 && n>= 0) ? 1);"
 }
