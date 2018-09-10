@@ -7,3 +7,4 @@ file_filter = <lang>/files_external_dropbox.po
 source_file = templates/files_external_dropbox.pot
 source_lang = en
 type = PO
+
