@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Fixed
+- Fix delete functions by invalidating stat cache after successful operation - [#32](https://github.com/owncloud/files_external_dropbox/issues/32)
+- Override third party libraries to check for filename casing - [#28](https://github.com/owncloud/files_external_dropbox/issues/28)
 
 ## [1.0.1] - 2018-02-08
 ### Known Issues
