@@ -91,7 +91,10 @@ ifdef CAN_SIGN
 else
 	@echo $(sign_skip_msg)
 endif
-	tar -czf $(appstore_package_name).tar.gz -C $(appstore_package_name)/../ $(app_name)
+	tar -czf $(appstore_package_name).tar.gz \
+		-C $(appstore_package_name)/../ \
+		--exclude-vcs \
+		$(app_name)
 
 .PHONY: clean-dist
 clean-dist:
