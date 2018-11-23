@@ -4,10 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.1.0]
 ### Fixed
+- Fix packaging to not contain VCS files - [#41](https://github.com/owncloud/files_external_dropbox/pull/41)
 - Fix delete functions by invalidating stat cache after successful operation - [#32](https://github.com/owncloud/files_external_dropbox/issues/32)
 - Override third party libraries to check for filename casing - [#28](https://github.com/owncloud/files_external_dropbox/issues/28)
+- Set max-version to 10 because platform is switching to Semver
 
 ## [1.0.1] - 2018-02-08
 ### Known Issues
@@ -25,5 +27,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 Initial release of the application
 
-[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.1...HEAD
+[1.1.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.0...v1.0.1
