@@ -16,7 +16,7 @@ Administrators and users (when enabled) can find external storage configuration 
     <summary>Integrate Dropbox as an external storage</summary>
     <licence>GPLv2</licence>
     <author>Hemant Mann</author>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <category>storage</category>
     <documentation>
     	<user>https://doc.owncloud.com/server/latest/user_manual/external_storage/external_storage.html?highlight=dropbox</user>
@@ -29,7 +29,7 @@ Administrators and users (when enabled) can find external storage configuration 
 
     <dependencies>
         <php min-version="5.6.4"/>
-        <owncloud min-version="10.0" max-version="10.0"/>
+        <owncloud min-version="10" max-version="10"/>
     </dependencies>
     <website>https://github.com/owncloud/files_external_dropbox/</website>
     <bugs>https://github.com/owncloud/files_external_dropbox/issues</bugs>
