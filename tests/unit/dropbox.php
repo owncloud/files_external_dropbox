@@ -26,71 +26,71 @@ namespace Test\Files_external_dropbox;
 use Test\Files\Storage\Storage;
 
 class Dropbox extends Storage {
-    private $config;
+	private $config;
 
-    protected function setUp() {
-        $this->config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
-        $this->instance = new \OCA\Files_external_dropbox\Storage\Dropbox($this->config);
-        parent::setUp();
-    }
-
-    public function directoryProvider() {
-        return [
-            ['folder'],
-            [' folder'],
-            ['folder with space'],
-            ['spéciäl földer'],
-            ['test single\'quote'],
-        ];
+	protected function setUp() {
+		$this->config = \json_decode(\file_get_contents(__DIR__ . '/config.json'), true);
+		$this->instance = new \OCA\Files_external_dropbox\Storage\Dropbox($this->config);
+		parent::setUp();
 	}
 
-    /**
-     * @dataProvider directoryProvider
-     */
-    public function testDirectories($directory) {
-        $this->assertFalse($this->instance->file_exists('/' . $directory));
+	public function directoryProvider() {
+		return [
+			['folder'],
+			[' folder'],
+			['folder with space'],
+			['spéciäl földer'],
+			['test single\'quote'],
+		];
+	}
 
-        $this->assertTrue($this->instance->mkdir('/' . $directory));
+	/**
+	 * @dataProvider directoryProvider
+	 */
+	public function testDirectories($directory) {
+		$this->assertFalse($this->instance->file_exists('/' . $directory));
 
-        $this->assertTrue($this->instance->file_exists('/' . $directory));
-        $this->assertTrue($this->instance->is_dir('/' . $directory));
-        $this->assertFalse($this->instance->is_file('/' . $directory));
-        $this->assertEquals('dir', $this->instance->filetype('/' . $directory));
-        $this->assertEquals(0, $this->instance->filesize('/' . $directory));
-        $this->assertTrue($this->instance->isReadable('/' . $directory));
-        $this->assertTrue($this->instance->isUpdatable('/' . $directory));
+		$this->assertTrue($this->instance->mkdir('/' . $directory));
 
-        $this->assertFalse($this->instance->mkdir('/' . $directory)); //can't create existing folders
-        $this->assertTrue($this->instance->rmdir('/' . $directory));
+		$this->assertTrue($this->instance->file_exists('/' . $directory));
+		$this->assertTrue($this->instance->is_dir('/' . $directory));
+		$this->assertFalse($this->instance->is_file('/' . $directory));
+		$this->assertEquals('dir', $this->instance->filetype('/' . $directory));
+		$this->assertEquals(0, $this->instance->filesize('/' . $directory));
+		$this->assertTrue($this->instance->isReadable('/' . $directory));
+		$this->assertTrue($this->instance->isUpdatable('/' . $directory));
 
-        $this->wait();
-        $this->assertFalse($this->instance->file_exists('/' . $directory));
+		$this->assertFalse($this->instance->mkdir('/' . $directory)); //can't create existing folders
+		$this->assertTrue($this->instance->rmdir('/' . $directory));
 
-        $this->assertFalse($this->instance->rmdir('/' . $directory)); //can't remove non existing folders
-    }
+		$this->wait();
+		$this->assertFalse($this->instance->file_exists('/' . $directory));
 
-    public function testCheckUpdate() {
-        $this->assertTrue(true);
-    }
+		$this->assertFalse($this->instance->rmdir('/' . $directory)); //can't remove non existing folders
+	}
 
-    public function testStat() {
-        $textFile = \OC::$SERVERROOT . '/tests/data/lorem.txt';
-        $ctimeStart = time();
-        $this->instance->file_put_contents('/lorem.txt', file_get_contents($textFile));
-        $this->assertTrue($this->instance->isReadable('/lorem.txt'));
-        $ctimeEnd = time();
-        $mTime = $this->instance->filemtime('/lorem.txt');
-        $this->assertTrue($this->instance->hasUpdated('/lorem.txt', $ctimeStart - 5));
-        $this->assertTrue($this->instance->hasUpdated('/', $ctimeStart - 5));
+	public function testCheckUpdate() {
+		$this->assertTrue(true);
+	}
 
-        // check that ($ctimeStart - 5) <= $mTime <= ($ctimeEnd + 1)
-        $this->assertGreaterThanOrEqual(($ctimeStart - 5), $mTime);
-        $this->assertLessThanOrEqual(($ctimeEnd + 1), $mTime);
-        $this->assertEquals(filesize($textFile), $this->instance->filesize('/lorem.txt'));
+	public function testStat() {
+		$textFile = \OC::$SERVERROOT . '/tests/data/lorem.txt';
+		$ctimeStart = \time();
+		$this->instance->file_put_contents('/lorem.txt', \file_get_contents($textFile));
+		$this->assertTrue($this->instance->isReadable('/lorem.txt'));
+		$ctimeEnd = \time();
+		$mTime = $this->instance->filemtime('/lorem.txt');
+		$this->assertTrue($this->instance->hasUpdated('/lorem.txt', $ctimeStart - 5));
+		$this->assertTrue($this->instance->hasUpdated('/', $ctimeStart - 5));
 
-        $stat = $this->instance->stat('/lorem.txt');
-        //only size and mtime are required in the result
-        $this->assertEquals($stat['size'], $this->instance->filesize('/lorem.txt'));
-        $this->assertEquals($stat['mtime'], $mTime);
-    }
+		// check that ($ctimeStart - 5) <= $mTime <= ($ctimeEnd + 1)
+		$this->assertGreaterThanOrEqual(($ctimeStart - 5), $mTime);
+		$this->assertLessThanOrEqual(($ctimeEnd + 1), $mTime);
+		$this->assertEquals(\filesize($textFile), $this->instance->filesize('/lorem.txt'));
+
+		$stat = $this->instance->stat('/lorem.txt');
+		//only size and mtime are required in the result
+		$this->assertEquals($stat['size'], $this->instance->filesize('/lorem.txt'));
+		$this->assertEquals($stat['mtime'], $mTime);
+	}
 }
