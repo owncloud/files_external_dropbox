@@ -1,7 +1,17 @@
+/build/
+/l10n/.transifexrc
+.php_cs.cache
+
+# Composer
+vendor/
+vendor-bin/**/vendor
+vendor-bin/**/composer.lock
+
+# Mac OS
 .DS_Store
 
-.idea
+# Tests - auto-generated files
+/tests/acceptance/output*
+/tests/output
 
-build/
-tests/clover.xml
-vendor
+.idea

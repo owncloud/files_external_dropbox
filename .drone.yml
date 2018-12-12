@@ -1,0 +1,120 @@
+workspace:
+  base: /var/www/owncloud
+  path: apps/files_external_dropbox
+
+branches: [master, release*, release/*]
+
+pipeline:
+  install-core:
+    image: owncloudci/core
+    version: ${OC_VERSION}
+    pull: true
+    db_type: ${DB_TYPE}
+    db_name: ${DB_NAME}
+    db_host: ${DB_TYPE}
+    db_username: autotest
+    db_password: owncloud
+    when:
+      matrix:
+        NEED_CORE: true
+
+  install-app:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - cd /var/www/owncloud/apps/files_external_dropbox
+      - composer install
+      - cd /var/www/owncloud/
+      - php occ a:l
+      - php occ a:e files_external_dropbox
+      - php occ a:e testing
+      - php occ a:l
+      - php occ config:system:set trusted_domains 1 --value=owncloud
+      - php occ log:manage --level 0
+    when:
+      matrix:
+        NEED_INSTALL_APP: true
+
+  owncloud-coding-standard:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    commands:
+      - make test-php-style
+    when:
+      matrix:
+        TEST_SUITE: owncloud-coding-standard
+
+  phpunit-tests:
+    image: owncloudci/php:${PHP_VERSION}
+    pull: true
+    environment:
+      - COVERAGE=${COVERAGE}
+    commands:
+      - if [ -z "${COVERAGE}" ]; then make test-php-unit; fi
+      - if [ "${COVERAGE}" = "true" ]; then make test-php-unit-dbg; fi
+    when:
+      matrix:
+        TEST_SUITE: phpunit
+
+  codecov:
+    image: plugins/codecov:2
+    secrets: [codecov_token]
+    pull: true
+    paths:
+      - tests/output/*.xml
+    when:
+      matrix:
+        COVERAGE: true
+
+  notify:
+    image: plugins/slack:1
+    pull: true
+    secrets: [slack_webhook]
+    channel: builds
+    when:
+      status: [failure, changed]
+      event: [push, tag]
+
+services:
+  mysql:
+    image: mysql:5.5
+    environment:
+      - MYSQL_USER=autotest
+      - MYSQL_PASSWORD=owncloud
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=owncloud
+    when:
+      matrix:
+        DB_TYPE: mysql
+
+  pgsql:
+    image: postgres:9.4
+    environment:
+      - POSTGRES_USER=autotest
+      - POSTGRES_PASSWORD=owncloud
+      - POSTGRES_DB=${DB_NAME}
+    when:
+      matrix:
+        DB_TYPE: pgsql
+
+  oci:
+    image: deepdiver/docker-oracle-xe-11g
+    environment:
+      - ORACLE_USER=system
+      - ORACLE_PASSWORD=oracle
+      - ORACLE_DB=${DB_NAME}
+    when:
+      matrix:
+        DB_TYPE: oci
+
+matrix:
+  include:
+    # owncloud-coding-standard
+    - PHP_VERSION: 7.2
+      TEST_SUITE: owncloud-coding-standard
+
+    - PHP_VERSION: 5.6
+      TEST_SUITE: owncloud-coding-standard
+
+    # Unit Tests are not run in drone because they require setting up a
+    # "Dropbox Developer App" and linking the ownCloud-under-test to it.

@@ -26,22 +26,20 @@ namespace OCA\Files_external_dropbox\Storage;
 use League\Flysystem\Util;
 use League\Flysystem\Filesystem as VendorFilesystem;
 
-
 class Filesystem extends VendorFilesystem {
-    const IS_CASE_INSENSITIVE_STORAGE = 'isCaseInsensitiveStorage';
+	const IS_CASE_INSENSITIVE_STORAGE = 'isCaseInsensitiveStorage';
 
-    /**
-     * @inheritdoc
-     */
-    public function listContents($directory = '', $recursive = false)
-    {
-        $directory = Util::normalizePath($directory);
-        $contents = $this->getAdapter()->listContents($directory, $recursive);
+	/**
+	 * @inheritdoc
+	 */
+	public function listContents($directory = '', $recursive = false) {
+		$directory = Util::normalizePath($directory);
+		$contents = $this->getAdapter()->listContents($directory, $recursive);
 
-        $contentListFormatter = new ContentListingFormatter($directory, $recursive);
-        // Make the formatter aware of the storage type i.e. whether it is case insensitive or not
-        $contentListFormatter->setIsCaseInsensitiveStorage($this->getConfig()->get(static::IS_CASE_INSENSITIVE_STORAGE, false));
+		$contentListFormatter = new ContentListingFormatter($directory, $recursive);
+		// Make the formatter aware of the storage type i.e. whether it is case insensitive or not
+		$contentListFormatter->setIsCaseInsensitiveStorage($this->getConfig()->get(static::IS_CASE_INSENSITIVE_STORAGE, false));
 
-        return $contentListFormatter->formatListing($contents);
-    }
+		return $contentListFormatter->formatListing($contents);
+	}
 }
