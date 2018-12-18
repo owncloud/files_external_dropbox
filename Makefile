@@ -93,6 +93,7 @@ $(dist_dir)/files_external_dropbox: $(composer_deps)
 	find $@/vendor -name doc -print | xargs rm -Rf
 	find $@/vendor -iname \*.sh -delete
 	find $@/vendor -iname \*.exe -delete
+	find $@/vendor -name .git\* -print | xargs rm -Rf
 
 .PHONY: dist
 dist: clean $(dist_dir)/files_external_dropbox
@@ -101,7 +102,7 @@ ifdef CAN_SIGN
 else
 	@echo $(sign_skip_msg)
 endif
-	tar -czf $(appstore_package_name).tar.gz \
+	tar --format=gnu -czf $(appstore_package_name).tar.gz \
 		-C $(appstore_package_name)/../ \
 		--exclude-vcs \
 		$(app_name)
