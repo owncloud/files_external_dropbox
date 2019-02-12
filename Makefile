@@ -73,7 +73,6 @@ $(composer_dev_deps): $(COMPOSER_BIN) composer.json composer.lock
 
 .PHONY: clean-composer-deps
 clean-composer-deps:
-	rm -f $(COMPOSER_BIN)
 	rm -Rf $(composer_deps)
 
 .PHONY: update-composer
