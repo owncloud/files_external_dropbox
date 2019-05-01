@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "Error verifying OAuth2 Code for " : "Gabim në verifikim Kodi OAuth2 për",
     "Dropbox V2" : "Dropbox V2",
-    "Step 2 failed. Exception: %s" : "Hapi 2 dÃ«shtoi. PÃ«rjashtim: %s",
+    "Step 2 failed. Exception: %s" : "Hapi 2 dështoi. Përjashtim: %s",
     "Invalid Request Params!!" : "Parametra të Pavlefshme Kërkese!"
 },
 "nplurals=2; plural=(n != 1);");
