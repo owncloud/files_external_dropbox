@@ -429,6 +429,7 @@ def phptests(testType):
 		'extraServices': [],
 		'extraEnvironment': {},
 		'extraCommandsBeforeTestRun': [],
+		'extraApps': [],
 	}
 
 	if 'defaults' in config:
@@ -486,6 +487,7 @@ def phptests(testType):
 					},
 					'steps': [
 						installCore('daily-master-qa', db, False),
+						installExtraApps(phpVersion, params['extraApps']),
 						setupServerAndApp(phpVersion, params['logLevel']),
 						params['extraSetup'],
 						{
@@ -666,9 +668,9 @@ def acceptance():
 									},
 									owncloudLog('federated')
 								] if params['federatedServerNeeded'] else []) + [
+									installExtraApps(phpVersion, params['extraApps']),
 									setupServerAndApp(phpVersion, params['logLevel']),
 									owncloudLog('server'),
-									installExtraApps(phpVersion, params['extraApps']),
 									params['extraSetup'],
 									fixPermissions(phpVersion, params['federatedServerNeeded']),
 									({
