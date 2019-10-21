@@ -127,5 +127,8 @@ trigger:
   ref:
   - refs/tags/**
   - refs/heads/master
+  status:
+  - success
+  - failure
 
 ...
