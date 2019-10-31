@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.2.0]
+
+### Changed
+- Update dependencies - [#70](https://github.com/owncloud/files_external_dropbox/issues/70)
+- Composer dependency bumps 20190730 - [#62](https://github.com/owncloud/files_external_dropbox/issues/62)
+- Composer dependency bumps 20190529 - [#61](https://github.com/owncloud/files_external_dropbox/issues/61)
+- Drop PHP 5.6 - [#55](https://github.com/owncloud/files_external_dropbox/issues/55)
 
 ## [1.1.0] - 2018-12-18
 
@@ -37,6 +43,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 Initial release of the application
 
-[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v1.1.0...master
+[1.2.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.0...v1.0.1
