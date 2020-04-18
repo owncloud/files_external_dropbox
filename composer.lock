@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c496d3998500db44df6732ab17e8812",
+    "content-hash": "1d935154e0a83c9c0e711d903ede1d1a",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -330,16 +330,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.66",
+            "version": "1.0.67",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21"
+                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/021569195e15f8209b1c4bebb78bd66aa4f08c21",
-                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
+                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
                 "shasum": ""
             },
             "require": {
@@ -410,7 +410,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-03-17T18:58:12+00:00"
+            "time": "2020-04-16T13:21:26+00:00"
         },
         {
             "name": "psr/http-message",
@@ -678,7 +678,7 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v5.5.48",
+            "version": "v5.5.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
@@ -730,31 +730,29 @@
     "packages-dev": [
         {
             "name": "bamarni/composer-bin-plugin",
-            "version": "v1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bamarni/composer-bin-plugin.git",
-                "reference": "67f9d314dc7ecf7245b8637906e151ccc62b8d24"
+                "reference": "46cb272590cc6b7f5947655063a7fd6ea097838b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bamarni/composer-bin-plugin/zipball/67f9d314dc7ecf7245b8637906e151ccc62b8d24",
-                "reference": "67f9d314dc7ecf7245b8637906e151ccc62b8d24",
+                "url": "https://api.github.com/repos/bamarni/composer-bin-plugin/zipball/46cb272590cc6b7f5947655063a7fd6ea097838b",
+                "reference": "46cb272590cc6b7f5947655063a7fd6ea097838b",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": "^5.6 || ^7.0 || ^8.0"
             },
             "require-dev": {
-                "composer/composer": "dev-master",
+                "composer/composer": "^1.0 || ^2.0",
                 "symfony/console": "^2.5 || ^3.0 || ^4.0"
             },
             "type": "composer-plugin",
             "extra": {
-                "class": "Bamarni\\Composer\\Bin\\Plugin",
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
+                "class": "Bamarni\\Composer\\Bin\\Plugin"
             },
             "autoload": {
                 "psr-4": {
@@ -765,7 +763,16 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-03-17T12:38:04+00:00"
+            "description": "No conflicts for your bin dependencies",
+            "keywords": [
+                "composer",
+                "conflict",
+                "dependency",
+                "executable",
+                "isolation",
+                "tool"
+            ],
+            "time": "2020-04-17T09:33:47+00:00"
         }
     ],
     "aliases": [],
