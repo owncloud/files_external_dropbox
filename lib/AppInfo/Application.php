@@ -23,6 +23,7 @@
 
 namespace OCA\Files_external_dropbox\AppInfo;
 
+use OC\Server;
 use OCP\AppFramework\App;
 use OCP\Files\External\Config\IBackendProvider;
 
@@ -35,7 +36,9 @@ class Application extends App implements IBackendProvider {
 
 		$container = $this->getContainer();
 
-		$backendService = $container->getServer()->getStoragesBackendService();
+		/** @var Server $server */
+		$server = $container->getServer();
+		$backendService = $server->getStoragesBackendService();
 		$backendService->registerBackendProvider($this);
 	}
 
