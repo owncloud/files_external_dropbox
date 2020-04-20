@@ -18,7 +18,7 @@ config = {
 		},
 	},
 
-	'phpstan': False,
+	'phpstan': True,
 
 	'phan': False,
 

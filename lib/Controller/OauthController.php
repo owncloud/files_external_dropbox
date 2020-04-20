@@ -76,31 +76,29 @@ class OauthController extends Controller {
 	) {
 		$clientId = $client_id;
 		$clientSecret = $client_secret;
-		if ($clientId !== null && $clientSecret !== null && $redirect !== null) {
-			$app = new \Kunnu\Dropbox\DropboxApp($clientId, $clientSecret);
-			$dropbox = new \Kunnu\Dropbox\Dropbox($app);
-			$authHelper = $dropbox->getAuthHelper();
+		$app = new \Kunnu\Dropbox\DropboxApp($clientId, $clientSecret);
+		$dropbox = new \Kunnu\Dropbox\Dropbox($app);
+		$authHelper = $dropbox->getAuthHelper();
 
-			if ($step == 1) {
-				$authUrl = $authHelper->getAuthUrl($redirect);
-				return new DataResponse([
+		if ($step == 1) {
+			$authUrl = $authHelper->getAuthUrl($redirect);
+			return new DataResponse([
 					'status' => 'success',
 					'data' => ['url' => $authUrl]
 				]);
-			} elseif ($step == 2 && isset($code)) {
-				try {
-					$accessToken = $authHelper->getAccessToken($code, null, $redirect);
-					return new DataResponse([
+		} elseif ($step == 2) {
+			try {
+				$accessToken = $authHelper->getAccessToken($code, null, $redirect);
+				return new DataResponse([
 						'status' => 'success',
 						'data' => ['token' => $accessToken->getToken()]
 					]);
-				} catch (\Exception $ex) {
-					return new DataResponse([
+			} catch (\Exception $ex) {
+				return new DataResponse([
 						'data' => [
 							'message' => $this->l10n->t('Step 2 failed. Exception: %s', [$ex->getMessage()])
 						]
 					], Http::STATUS_UNPROCESSABLE_ENTITY);
-				}
 			}
 		}
 		return new DataResponse(

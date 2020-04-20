@@ -141,7 +141,6 @@ abstract class CacheableFlysystemAdapter extends FlysystemStorageAdapter {
 				unset($this->cacheContents[$this->getCacheLocation($path)]);
 				return parent::fopen($path, $mode);
 		}
-		return false;
 	}
 
 	/**

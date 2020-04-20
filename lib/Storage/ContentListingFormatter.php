@@ -114,11 +114,11 @@ class ContentListingFormatter extends FlysystemContentListingFormatter {
 	/**
 	 * Check if the entry resides within the parent directory.
 	 * Update path comparison check using $this->formatPath
-	 * @param $entry
+	 * @param array $entry
 	 *
 	 * @return bool
 	 */
-	private function residesInDirectory(array $entry) {
+	private function residesInDirectory($entry) {
 		if ($this->directory === '') {
 			return true;
 		}
@@ -129,11 +129,11 @@ class ContentListingFormatter extends FlysystemContentListingFormatter {
 	/**
 	 * Check if the entry is a direct child of the directory.
 	 * Update path comparision check using $this->formatPath
-	 * @param $entry
+	 * @param array $entry
 	 *
 	 * @return bool
 	 */
-	private function isDirectChild(array $entry) {
+	private function isDirectChild($entry) {
 		return Util::dirname($this->formatPath($entry['path'])) === $this->formatPath($this->directory);
 	}
 

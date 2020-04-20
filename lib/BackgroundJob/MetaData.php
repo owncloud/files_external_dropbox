@@ -30,6 +30,7 @@ use OCP\IUser;
 use OCP\IUserManager;
 use OC\Files\Utils\Scanner;
 use OC\BackgroundJob\TimedJob;
+use OC\Files\External\StorageConfig;
 
 class MetaData extends TimedJob {
 	/** @var IConfig */
@@ -48,12 +49,10 @@ class MetaData extends TimedJob {
 	/**
 	 * @param IConfig|null $config
 	 * @param IUserManager|null $userManager
-	 * @param IDBConnection|null $dbConnection
 	 * @param ILogger|null $logger
 	 */
 	public function __construct(IConfig $config = null,
 								IUserManager $userManager = null,
-								IDBConnection $dbConnection = null,
 								ILogger $logger = null) {
 		// Run once per 10 minutes
 		$this->setInterval(1);
@@ -119,6 +118,9 @@ class MetaData extends TimedJob {
 			}
 		}
 		foreach ($result as $r) {
+			/**
+			 * @var StorageConfig $r
+			 */
 			$this->syncStorage($r);
 		}
 		return true;
