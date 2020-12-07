@@ -16,3 +16,6 @@ vendor-bin/**/composer.lock
 .phpunit.result.cache
 
 .idea
+
+# SonarCloud scanner
+.scannerwork
