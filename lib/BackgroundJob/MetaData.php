@@ -41,7 +41,7 @@ class MetaData extends TimedJob {
 	/** @var ILogger */
 	private $logger;
 	/** Amount of users that should get scanned per execution */
-	const USERS_PER_SESSION = 500;
+	public const USERS_PER_SESSION = 500;
 
 	private $appName = 'files_external_dropbox';
 
@@ -51,10 +51,12 @@ class MetaData extends TimedJob {
 	 * @param IDBConnection|null $dbConnection
 	 * @param ILogger|null $logger
 	 */
-	public function __construct(IConfig $config = null,
-								IUserManager $userManager = null,
-								IDBConnection $dbConnection = null,
-								ILogger $logger = null) {
+	public function __construct(
+		IConfig $config = null,
+		IUserManager $userManager = null,
+		IDBConnection $dbConnection = null,
+		ILogger $logger = null
+	) {
 		// Run once per 10 minutes
 		$this->setInterval(1);
 		if ($userManager === null || $config === null) {
