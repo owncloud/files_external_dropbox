@@ -27,7 +27,7 @@ use League\Flysystem\Util;
 use League\Flysystem\Filesystem as VendorFilesystem;
 
 class Filesystem extends VendorFilesystem {
-	const IS_CASE_INSENSITIVE_STORAGE = 'isCaseInsensitiveStorage';
+	public const IS_CASE_INSENSITIVE_STORAGE = 'isCaseInsensitiveStorage';
 
 	/**
 	 * @inheritdoc
