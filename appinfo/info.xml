@@ -28,7 +28,7 @@ Administrators and users (when enabled) can find external storage configuration 
     </types>
 
     <dependencies>
-        <php min-version="7.0.0"/>
+        <php min-version="7.3"/>
         <owncloud min-version="10.2" max-version="10"/>
     </dependencies>
     <website>https://github.com/owncloud/files_external_dropbox/</website>
