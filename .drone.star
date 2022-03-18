@@ -1634,7 +1634,6 @@ def installExtraApps(phpVersion, extraApps):
     for app, command in extraApps.items():
         commandArray.append("ls %s/apps/%s || git clone https://github.com/owncloud/%s.git %s/apps/%s" % (dir["testrunner"], app, app, dir["testrunner"], app))
         commandArray.append("ls %s/apps/%s || cp -r %s/apps/%s %s/apps/" % (dir["server"], app, dir["testrunner"], app, dir["server"]))
-
         if (command != ""):
             commandArray.append("cd %s/apps/%s" % (dir["server"], app))
             commandArray.append(command)
