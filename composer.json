@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "kunalvarma05/dropbox-php-sdk": "dev-guzzle5",
+        "kunalvarma05/dropbox-php-sdk": "dev-refresh_tokens_support",
         "hemant-mann/flysystem-dropbox": "dev-guzzle5"
     },
     "require-dev": {
