@@ -8,19 +8,9 @@
             "bamarni/composer-bin-plugin": true
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Hemant-Mann/dropbox-php-sdk"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/Hemant-Mann/flysystem-dropbox"
-        }
-    ],
     "require": {
-        "kunalvarma05/dropbox-php-sdk": "dev-guzzle5",
-        "hemant-mann/flysystem-dropbox": "dev-guzzle5"
+        "kunalvarma05/dropbox-php-sdk": "^0.2",
+        "hemant-mann/flysystem-dropbox": "^1.0"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4"
