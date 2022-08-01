@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - [#39387](https://github.com/owncloud/core/issues/39387) - Update guzzle major version to 7
 - This version requires ownCloud 10.11.0 or above
+- Library bumps (required for guzzle 7)
 
 ## [1.2.0]
 
