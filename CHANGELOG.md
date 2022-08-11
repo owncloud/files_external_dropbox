@@ -4,7 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [Unreleased] - 
+
+-
+
+## [2.0.0] - 2022-08-10
+
+### Changed
+
+- [#39387](https://github.com/owncloud/core/issues/39387) - Update guzzle major version to 7
+- This version requires ownCloud 10.11.0 or above
+- Library bumps (required for guzzle 7)
+
+### Fixed
+
+- [#138](https://github.com/owncloud/files_external_dropbox/issues/138) - Can not upload file into External Dropbox Storage
+
 
 ## [1.2.0]
 
@@ -45,7 +60,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 Initial release of the application
 
-[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v1.2.0...master
+[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.0...master
+[2.0.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.2.0...v2.0.0
 [1.2.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/owncloud/files_external_dropbox/compare/v1.0.0...v1.0.1
