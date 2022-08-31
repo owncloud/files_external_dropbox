@@ -28,6 +28,7 @@ use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use Kunnu\Dropbox\Models\AccessToken;
 use Kunnu\Dropbox\Dropbox as DropboxClient;
 use OCP\Files\Storage\FlysystemStorageAdapter;
+use OCA\Files_external_dropbox\OAuth2Store;
 
 class Dropbox extends CacheableFlysystemAdapter {
 	public const APP_NAME = 'files_external_dropbox';
@@ -96,21 +97,23 @@ class Dropbox extends CacheableFlysystemAdapter {
 		) {
 			$this->clientId = $params['client_id'];
 			$this->clientSecret = $params['client_secret'];
-			$accessTokenData = json_decode($params['token'], true);
+			$this->root = isset($params['root']) ? $params['root'] : '/';
+
+			$oauth2Store = OAuth2Store::getGlobalInstance();
+			$accessTokenData = $oauth2Store->retrieveData($params['token']);
 			if ($accessTokenData === null) {
 				// likely only the access token as string, for backwards compatibility
 				$this->accessToken = ['access_token' => $params['token']];
 			} else {
 				$this->accessToken = $accessTokenData;
 			}
-			$this->root = isset($params['root']) ? $params['root'] : '/';
 
 			$app = new DropboxApp($this->clientId, $this->clientSecret, $this->accessToken['access_token']);
 			$dropboxClient = new DropboxClient($app);
 
 			$this->adapter = new Adapter($dropboxClient);
 			$this->buildFlySystem($this->adapter);
-			$this->refreshAccessToken();
+			$this->refreshAccessToken($oauth2Store, $params['token']);
 		} else {
 			throw new \Exception('Creating \OCA\Files_external_dropbox\Storage\Dropbox storage failed');
 		}
@@ -226,7 +229,7 @@ class Dropbox extends CacheableFlysystemAdapter {
 		return false;
 	}
 
-	private function refreshAccessToken() {
+	private function refreshAccessToken(OAuth2Store $oauth2Store, string $opaqueToken) {
 		if (!isset($this->accessToken['refresh_token'])) {
 			// if there is no refresh token, we can't do anything
 			return;
@@ -239,24 +242,10 @@ class Dropbox extends CacheableFlysystemAdapter {
 
 		// if there is no expiration timestamp or it's already expired, try to refresh the token
 		$oldAccessToken = new AccessToken($this->accessToken);
-		$this->accessToken = $this->adapter->refreshToken($oldAccessToken);
+		$newAccessToken = $this->adapter->refreshToken($oldAccessToken);
+		$this->accessToken = $newAccessToken->getData();
+		$this->accessToken['expTimestamp'] = \time() + $this->accessToken['expires_in'] - OAuth2Store::TOKEN_EXP_OFFSET;
 
-		$storageService = \OC::$server->getGlobalStoragesService();
-		foreach ($storageService->getAllStorages() as $storageConfig) {
-			$backend = $storageConfig->getBackend();
-			$authMechanism = $storageConfig->getAuthMechanism();
-			if ($backend->getIdentifier() !== 'files_external_dropbox' || $authMechanism->getIdentifier() !== 'oauth2::oauth2') {
-				continue;
-			}
-
-			$clientId = $storageConfig->getBackendOption('client_id');
-			$clientSecret = $storageConfig->getBackendOption('client_secret');
-			if ($this->clientId === $clientId && $this->clientSecret === $clientSecret) {
-				$accessTokenData = $this->accessToken->getData();
-				$accessTokenData['expTimestamp'] = \time() + $accessTokenData['expires_in'] - 600;
-				$storageConfig->setBackendOption('token', \json_encode($accessTokenData));
-				$storageService->updateStorage($storageConfig);
-			}
-		}
+		$oauth2Store->updateData($opaqueToken, $this->accessToken);
 	}
 }
