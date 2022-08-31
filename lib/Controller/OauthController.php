@@ -82,7 +82,7 @@ class OauthController extends Controller {
 			$authHelper = $dropbox->getAuthHelper();
 
 			if ($step == 1) {
-				$authUrl = $authHelper->getAuthUrl($redirect);
+				$authUrl = $authHelper->getAuthUrl($redirect, [], null, 'offline');
 				return new DataResponse([
 					'status' => 'success',
 					'data' => ['url' => $authUrl]
@@ -90,9 +90,13 @@ class OauthController extends Controller {
 			} elseif ($step == 2 && isset($code)) {
 				try {
 					$accessToken = $authHelper->getAccessToken($code, null, $redirect);
+					$accessTokenData = $accessToken->getData();
+					// consider expiration 10 minutes before the expected time so we can refresh
+					// the token without causing problems
+					$accessTokenData['expTimestamp'] = \time() + $accessTokenData['expires_in'] - 600;
 					return new DataResponse([
 						'status' => 'success',
-						'data' => ['token' => $accessToken->getToken()]
+						'data' => ['token' => \json_encode($accessTokenData)]
 					]);
 				} catch (\Exception $ex) {
 					return new DataResponse([

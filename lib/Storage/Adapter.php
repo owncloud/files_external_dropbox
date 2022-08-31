@@ -49,4 +49,11 @@ class Adapter extends DropboxAdapter {
 		}
 		return \array_unique($result);
 	}
+
+	public function refreshToken($oldTokenObj) {
+		$authHelper = $this->client->getAuthHelper();
+		$newTokenObj = $authHelper->getRefreshedAccessToken($oldTokenObj);
+		$this->client->setAccessToken($newTokenObj->getToken());
+		return $newTokenObj;
+	}
 }
