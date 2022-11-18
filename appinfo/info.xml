@@ -16,7 +16,7 @@ Administrators and users (when enabled) can find external storage configuration 
     <summary>Integrate Dropbox as an external storage</summary>
     <licence>GPLv2</licence>
     <author>Hemant Mann</author>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <category>storage</category>
     <documentation>
     	<user>https://doc.owncloud.com/server/latest/user_manual/external_storage/external_storage.html?highlight=dropbox</user>
