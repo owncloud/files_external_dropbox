@@ -29,7 +29,6 @@ use OCP\Files\External\DefinitionParameter;
 use OCP\Files\External\Auth\AuthMechanism;
 
 class Dropbox extends Backend {
-
 	/**
 	 * Dropbox constructor.
 	 * @param IL10N $l
