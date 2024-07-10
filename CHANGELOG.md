@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 
-## [Unreleased] 
+## [2.0.2] - 2024-07-10
+
+### Changed
+
+- [#161](https://github.com/owncloud/files_external_dropbox/issues/161) - chore(deps): bump PHP dependencies
+- transifex updates; toolchain updates
 
 
 ## [2.0.1] - 2022-11-18
@@ -67,7 +72,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 Initial release of the application
 
-[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.1...master
+[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.2...master
+[2.0.2]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.2.0...v2.0.0
 [1.2.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.1.0...v1.2.0
