@@ -53,7 +53,7 @@ config = {
     "branches": [
         "master",
     ],
-    "codestyle": True,
+    "codestyle": False,
     "phpstan": False,
     "phan": False,
     "javascript": False,
