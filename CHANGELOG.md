@@ -12,6 +12,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Changed
 - Maintenance release re-signed with the ownCloud G2 code-signing certificate for the ownCloud 11.0.0 release.
 
+## [2.1.0] - 2026-06-29
+
+### Changed
+- ownCloud 11 compatible release (oc 11.0.0-rc1).
+
 ## [2.0.2] - 2024-07-10
 
 ### Changed
@@ -81,6 +86,7 @@ Initial release of the application
 
 [Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v2.1.1..master
 [2.1.1]: https://github.com/owncloud/files_external_dropbox/compare/v2.1.0..v2.1.1
+[2.1.0]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.2..v2.1.0
 [2.0.2]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/owncloud/files_external_dropbox/compare/v1.2.0...v2.0.0
