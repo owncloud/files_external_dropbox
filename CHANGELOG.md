@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased] - XXXX-XX-XX
 
 
+## [2.1.2] - 2026-08-21
+
+### Fixed
+- [#191](https://github.com/owncloud/files_external_dropbox/pull/191) - chore(deps): bump guzzlehttp/guzzle from 7.15.1 to 7.15.2, fixing CVE-2026-69246
+
 ## [2.1.1] - 2026-07-22
 
 ### Changed
@@ -84,7 +89,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 Initial release of the application
 
-[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v2.1.1..master
+[Unreleased]: https://github.com/owncloud/files_external_dropbox/compare/v2.1.2..master
+[2.1.2]: https://github.com/owncloud/files_external_dropbox/compare/v2.1.1..v2.1.2
 [2.1.1]: https://github.com/owncloud/files_external_dropbox/compare/v2.1.0..v2.1.1
 [2.1.0]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.2..v2.1.0
 [2.0.2]: https://github.com/owncloud/files_external_dropbox/compare/v2.0.1...v2.0.2
