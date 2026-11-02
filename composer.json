@@ -1,6 +1,11 @@
 {
     "name": "owncloud/files_external_dropbox",
     "config": {
+        "audit": {
+            "ignore": {
+                "PKSA-w9tt-7782-78jx": "low-severity filename control-character check bypass in league/flysystem; ownCloud Classic already rejects filenames with control-characters."
+            }
+        },
         "platform": {
             "php": "8.3"
         },
@@ -17,7 +22,6 @@
     "require": {
         "kunalvarma05/dropbox-php-sdk": "^0.4.1",
         "hemant-mann/flysystem-dropbox": "^1.0.5",
-        "roave/security-advisories": "dev-latest",
         "php": ">=8.3"
     },
     "require-dev": {
